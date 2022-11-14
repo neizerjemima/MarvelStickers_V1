@@ -43,6 +43,15 @@ header nav ul li {
 }
 
 /* add a down arrow after the last list item */
+.last-list-item::before {
+    content: "\25bc";
+    padding-left: 4px
+}
+
+header nav ul li::after {
+    content: "\25bc";
+    padding: 5px;
+}
 
 
 header nav ul li:hover { opacity: 0.8; }
@@ -84,19 +93,38 @@ header nav ul li:hover { opacity: 0.8; }
 .characters li img { max-width: 100%; }
 
 /*attribute selector -> the element's attributes go inside square brackets*/
-input[type=checkbox] {margin-right: 8px;}
+input[type=checkbox] {
+    margin-right: 8px;
+    position: absolute;    
+    opacity: 0;
+    width: 50px;
+}
 
 
 /* ::after rules go here */
+input[type=checkbox]:checked + span::after {
+    content: '\2713'; /*this makes a checkmark*/
+    width: 25px;
+    height: 25px;
+    padding: 0 4px 8px 4px;
+    border-radius: 50%;
+    background-color: rgb(51, 1, 1);
+    border: 3px solid rgba(129, 9, 9, 0.863);
+    font-size: 1.5em;
+    position: absolute;
+    top: 10px;
+    right: 18px;
+    animation: fadeIn 0.;
+}
 
 article {
   padding: 20px;
 }
 
-article h3 { 
-  font-size: 2.5em; 
+main h3 { 
+  font-size: 3em; 
   text-align: center; 
-  margin-bottom: 14px;
+  margin-bottom: 16px 0 14px 0;
 }
 
 article p { 
@@ -119,4 +147,9 @@ footer {
 
   height: 80px;
   background-color: rgb(40, 37, 37);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0;}
+    end { opacity: 2;}
 }
